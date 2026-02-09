@@ -63,4 +63,9 @@ export const getOrganizationTools = () => [
     description: "[Organization Management] Get information about an organization role",
     inputSchema: zodToJsonSchema(types.GetOrganizationRoleSchema),
   },
+  {
+    name: "list_users",
+    description: "[Organization Management] List users, supports fuzzy search by username, login name, email, phone number, and filtering by status and department",
+    inputSchema: zodToJsonSchema(types.ListUsersSchema),
+  },
 ];

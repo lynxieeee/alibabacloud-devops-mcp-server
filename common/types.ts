@@ -28,7 +28,11 @@ export {
   SearchOrganizationMembersSchema,
   SearchOrganizationMembersResultSchema,
   SearchOrganizationMembersParams,
-  SearchOrganizationMembersResult
+  SearchOrganizationMembersResult,
+  ListUsersSchema,
+  UserResultSchema,
+  UsersResultSchema,
+  UsersResult
 } from "../operations/organization/types.js";
 
 // Codeup types

@@ -33,7 +33,7 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `get_organization_member_info_by_user_id`: Get information about a member in an organization by user ID
 - `search_organization_members`: Search for organization members
 - `list_organization_roles`: List organization roles
-- `get_organization_role`: Get information about an organization role
+- `list_users`: List users in an organization
 
 ### Code Management Tools
 

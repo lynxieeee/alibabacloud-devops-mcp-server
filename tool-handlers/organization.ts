@@ -106,6 +106,20 @@ export const handleOrganizationTools = async (request: any) => {
       }
     }
 
+    case "list_users": {
+      const args = types.ListUsersSchema.parse(request.params.arguments);
+      const users = await members.listUsersFunc(
+        args.filter ?? undefined,
+        args.status ?? undefined,
+        args.deptId ?? undefined,
+        args.page ?? undefined,
+        args.perPage ?? undefined
+      );
+      return {
+        content: [{ type: "text", text: JSON.stringify(users, null, 2)}]
+      }
+    }
+
     default:
       return null;
   }

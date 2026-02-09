@@ -139,3 +139,25 @@ export const GetOrganizationMembersSchema = z.object({
   page: z.number().int().optional().describe("Page number"),
   perPage: z.number().int().optional().describe("Page size"),
 });
+
+// List users schema
+export const ListUsersSchema = z.object({
+  filter: z.string().optional().describe("查询信息，支持用户名、登录名、邮箱、手机号等信息的模糊搜索"),
+  status: z.enum(["enabled", "deleted"]).optional().describe("用户状态"),
+  deptId: z.string().optional().describe("所属部门"),
+  page: z.number().int().optional().describe("当前页，默认1"),
+  perPage: z.number().int().optional().describe("每页数据条数，默认100"),
+});
+
+export const UserResultSchema = z.object({
+  id: z.string().nullable().optional().describe("用户ID"),
+  name: z.string().nullable().optional().describe("用户名"),
+  username: z.string().nullable().optional().describe("登录名"),
+  email: z.string().nullable().optional().describe("邮箱"),
+  state: z.string().nullable().optional().describe("用户状态"),
+  createdAt: z.string().nullable().optional().describe("创建时间"),
+  updatedAt: z.string().nullable().optional().describe("更新时间"),
+}).passthrough();
+
+export const UsersResultSchema = z.array(UserResultSchema);
+export type UsersResult = z.infer<typeof UsersResultSchema>;

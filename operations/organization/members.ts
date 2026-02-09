@@ -3,6 +3,8 @@ import {
   OrganizationMembers,
   GetOrganizationMemberInfo,
   MemberInfoSchema, SearchOrganizationMembersResult, SearchOrganizationMembersResultSchema,
+  UsersResultSchema,
+  UsersResult,
 } from './types.js';
 import {buildUrl, yunxiaoRequest} from "../../common/utils.js";
 import {debug} from "util";
@@ -139,4 +141,38 @@ export const getOrganizationMemberByUserIdInfoFunc = async (
   });
 
   return MemberInfoSchema.parse(response);
+};
+
+/**
+ * 查询用户列表
+ * @param filter 查询信息，支持用户名、登录名、邮箱、手机号等信息的模糊搜索
+ * @param status 用户状态
+ * @param deptId 所属部门
+ * @param page 当前页，默认1
+ * @param perPage 每页数据条数，默认100
+ * @returns 用户列表
+ */
+export const listUsersFunc = async (
+  filter?: string,
+  status?: string,
+  deptId?: string,
+  page?: number,
+  perPage?: number
+): Promise<UsersResult> => {
+  const baseUrl = `/oapi/v1/platform/users`;
+
+  const params: Record<string, string | number | undefined> = {};
+  if (filter) params.filter = filter;
+  if (status) params.status = status;
+  if (deptId) params.deptId = deptId;
+  if (page) params.page = page;
+  if (perPage) params.perPage = perPage;
+
+  const url = buildUrl(baseUrl, params);
+
+  const response = await yunxiaoRequest(url, {
+    method: "GET",
+  });
+
+  return UsersResultSchema.parse(response);
 };
