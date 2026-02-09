@@ -13,7 +13,7 @@ import {
 
 export async function getCurrentOrganizationInfoFunc(
 ): Promise<z.infer<typeof CurrentOrganizationInfoSchema>> {
-  const url = "/oapi/v1/platform/user";
+  const url = "/oapi/v1/platform/users:me";
 
   const response = await yunxiaoRequest(url, {
     method: "GET",
@@ -118,7 +118,7 @@ export async function getOrganizationRoleFunc(
 }
 
 export async function getCurrentUserFunc(): Promise<z.infer<typeof CurrentUserSchema>> {
-  const url = "/oapi/v1/platform/user";
+  const url = "/oapi/v1/platform/users:me";
 
   const response = await yunxiaoRequest(url, {
     method: "GET",
