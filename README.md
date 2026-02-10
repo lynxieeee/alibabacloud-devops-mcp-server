@@ -22,17 +22,18 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 
 ### Organization Management
 
-- `get_current_organization_Info`: Get current user's organization information
+- `get_current_organization_info`: Get current user's organization information
 - `get_user_organizations`: Get the list of organizations the current user has joined
-- `get_organization_role`: Get information about an organization role
-- `get_organization_departments`: Get the list of departments in an organization
+- `get_current_user`: Get information about the current user based on the token
+- `list_organization_departments`: Get the list of departments in an organization
 - `get_organization_department_info`: Get information about a department in an organization
 - `get_organization_department_ancestors`: Get the ancestors of a department in an organization
-- `get_organization_members`: Get the list of members in an organization
+- `list_organization_members`: Get the list of members in an organization
 - `get_organization_member_info`: Get information about a member in an organization
 - `get_organization_member_info_by_user_id`: Get information about a member in an organization by user ID
 - `search_organization_members`: Search for organization members
 - `list_organization_roles`: List organization roles
+- `get_organization_role`: Get information about an organization role
 - `list_users`: List users in an organization
 
 ### Code Management Tools
@@ -50,9 +51,13 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `create_change_request_comment`: Create a comment on a merge request
 - `get_change_request`: Query merge request
 - `list_change_request_patch_sets`: Query merge request version list
-- `list_change_request`: Query merge request list
+- `update_change_request_comment`: Update a comment on a change request
+- `list_change_requests`: Query merge request list
 - `list_change_request_comments`: Query merge request comment list
-- `get_compare`: Compare code
+- `list_commits`: List commits in a Codeup repository
+- `get_commit`: Get information about a commit
+- `create_commit_comment`: Create a comment on a commit
+- `compare`: Compare code
 - `get_repository`: Get repository details
 - `list_repositories`: Get repository list
 
@@ -62,10 +67,13 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `search_projects`: Search projects
 - `get_sprint`: Get sprint details
 - `list_sprints`: List sprints in a project
+- `create_sprint`: Create a new sprint
+- `update_sprint`: Update an existing sprint
 - `get_work_item`: Get work item details
 - `search_workitems`: Search work items
 - `get_work_item_types`: get work item types
 - `create_work_item`: create work item
+- `update_work_item`: Update a work item
 - `list_all_work_item_types`: List all work item types in an organization
 - `list_work_item_types`: List work item types in a project space
 - `get_work_item_type`: Get details of a specific work item type
@@ -74,6 +82,7 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `get_work_item_workflow`: Get workflow information for a specific work item type
 - `list_work_item_comments`: List comments for a specific work item
 - `create_work_item_comment`: Create a comment for a specific work item
+
 - `list_current_user_effort_records`: [Project Management] 获取用户的实际工时明细，结束时间和开始时间的间隔不能大于6个月
 - `list_effort_records`: [Project Management] 获取实际工时明细
 - `create_effort_record`: [Project Management] 登记实际工时
@@ -86,6 +95,7 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 
 - `get_pipeline`: Get pipeline details
 - `list_pipelines`: Get pipeline list
+- `generate_pipeline_yaml`: Generate YAML configuration for a pipeline without creating it
 - `smart_list_pipelines`: Smart pipeline search with natural language time references
 - `create_pipeline_run`: Create a pipeline run instance
 - `get_latest_pipeline_run`: Get the latest pipeline run instance
@@ -98,11 +108,13 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `list_service_connections`: List service connections in organization
 - `create_pipeline_from_description`: Automatically generates YAML configuration and creates pipeline
 - `update_pipeline`: Update an existing pipeline in Yunxiao by pipelineId. Use this to update pipeline YAML, stages, jobs, etc.
+
 - `create_resource_member`: Create a resource member
 - `delete_resource_member`: Delete a resource member
 - `list_resource_members`: Get a list of resource members
 - `update_resource_member`: Update a resource member
 - `update_resource_owner`: Transfer resource owner
+
 - `create_tag`: Create a tag
 - `create_tag_group`: Create a tag group
 - `list_tag_groups`: Get a list of tag groups
@@ -111,6 +123,7 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `get_tag_group`: Get a tag group
 - `delete_tag`: Delete a tag
 - `update_tag`: Update a tag
+
 - `stop_vm_deploy_order`: Stop VM deploy order
 - `skip_vm_deploy_machine`: Skip VM deploy machine
 - `retry_vm_deploy_machine`: Retry VM deploy machine
@@ -162,6 +175,10 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `get_machine_deploy_log`: [application delivery] Get machine deployment log
 - `add_host_list_to_host_group`: [application delivery] Add host list to host group
 - `add_host_list_to_deploy_group`: [application delivery] Add host list to deploy group
+- `list_system_release_workflows`: [application delivery] List all release workflows for a system
+- `create_system_release_workflow`: [application delivery] Create a system release workflow
+- `update_system_release_stage`: [application delivery] Update a system release workflow stage
+- `execute_system_release_stage`: [application delivery] Execute a system release workflow stage
 - `list_app_release_workflows`: [application delivery] List all release workflows for an application
 - `list_app_release_workflow_briefs`: [application delivery] List release workflow briefs for an application
 - `get_app_release_workflow_stage`: [application delivery] Get release workflow stage details

@@ -20,17 +20,18 @@ alibabacloud-devops-mcp-server提供了以下功能，让AI助手能够：
 alibabacloud-devops-mcp-server集成了多种工具，包括：
 
 ### 组织管理
-- `get_current_organization_Info`: 获取当前用户所在组织信息
+- `get_current_organization_info`: 获取当前用户所在组织信息
 - `get_user_organizations`: 获取当前用户加入的组织列表
-- `get_organization_role`: 获取组织角色信息
-- `get_organization_departments`: 获取组织中的部门列表
+- `get_current_user`: 根据令牌获取当前用户信息
+- `list_organization_departments`: 获取组织中的部门列表
 - `get_organization_department_info`: 获取组织中某个部门的信息
 - `get_organization_department_ancestors`: 获取组织中部门的上级部门
-- `get_organization_members`: 获取组织成员列表
+- `list_organization_members`: 获取组织成员列表
 - `get_organization_member_info`: 获取组织成员信息
 - `get_organization_member_info_by_user_id`: 通过用户ID获取组织成员信息
 - `search_organization_members`: 搜索组织成员
 - `list_organization_roles`: 列出组织角色
+- `get_organization_role`: 获取组织角色信息
 - `list_users`: 查询用户列表
 
 ### 代码管理工具
@@ -48,9 +49,13 @@ alibabacloud-devops-mcp-server集成了多种工具，包括：
 - `create_change_request_comment`: 创建合并请求评论
 - `get_change_request`: 查询合并请求
 - `list_change_request_patch_sets`: 查询合并请求版本列表
-- `list_change_request`: 查询合并请求列表
+- `update_change_request_comment`: 更新合并请求评论
+- `list_change_requests`: 查询合并请求列表
 - `list_change_request_comments`: 查询合并请求评论列表
-- `get_compare`: 代码比较
+- `list_commits`: 查询提交记录列表
+- `get_commit`: 获取提交记录信息
+- `create_commit_comment`: 创建提交评论
+- `compare`: 代码比较
 - `get_repository`: 获取仓库详情
 - `list_repositories`: 获取仓库列表
 
@@ -60,10 +65,13 @@ alibabacloud-devops-mcp-server集成了多种工具，包括：
 - `search_projects`: 搜索项目
 - `get_sprint`: 获取迭代详情
 - `list_sprints`: 获取项目中的迭代列表
+- `create_sprint`: 创建迭代
+- `update_sprint`: 更新迭代
 - `get_work_item`: 获取工作项详情
 - `search_workitems`: 搜索工作项
 - `get_work_item_types`: 获取工作项类型
 - `create_work_item`: 创建工作项
+- `update_work_item`: 更新工作项
 - `list_all_work_item_types`: 列出组织中所有工作项类型
 - `list_work_item_types`: 列出项目空间中工作项类型
 - `get_work_item_type`: 获取特定工作项类型的详细信息
@@ -83,6 +91,7 @@ alibabacloud-devops-mcp-server集成了多种工具，包括：
 ###  流水线工具
 - `get_pipeline` - 获取流水线详情
 - `list_pipelines` - 获取流水线列表
+- `generate_pipeline_yaml` - 生成流水线YAML配置（不创建流水线）
 - `smart_list_pipelines` - 智能查询流水线（支持自然语言时间）
 - `create_pipeline_run` - 运行流水线
 - `get_latest_pipeline_run` - 获取最新运行信息
@@ -160,6 +169,10 @@ alibabacloud-devops-mcp-server集成了多种工具，包括：
 - `get_machine_deploy_log`: [应用交付] 获取机器部署日志
 - `add_host_list_to_host_group`: [应用交付] 添加主机列表到主机组
 - `add_host_list_to_deploy_group`: [应用交付] 添加主机列表到部署组
+- `list_system_release_workflows`: [应用交付] 查询系统下所有发布流程
+- `create_system_release_workflow`: [应用交付] 创建系统发布流程
+- `update_system_release_stage`: [应用交付] 更新系统发布流程阶段
+- `execute_system_release_stage`: [应用交付] 执行系统发布流程阶段
 - `list_app_release_workflows`: [应用交付] 查询应用下所有发布流程
 - `list_app_release_workflow_briefs`: [应用交付] 查询应用下所有发布流程摘要
 - `get_app_release_workflow_stage`: [应用交付] 获取发布流程阶段详情
