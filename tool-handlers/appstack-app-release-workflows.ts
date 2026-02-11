@@ -109,7 +109,7 @@ export async function handleAppStackAppReleaseWorkflowTools(request: any) {
         content: [{ type: "text", text: JSON.stringify(skipResult, null, 2) }],
       };
       
-    case 'list_app_release_stage_execution_integrated_metadata':
+    case 'list_app_release_stage_exec_metadata':
       const listMetadataParams = ListAppReleaseStageExecutionIntegratedMetadataRequestSchema.parse(request.params.arguments);
       const listMetadataResult = await listAppReleaseStageExecutionIntegratedMetadata(listMetadataParams);
       return {
@@ -130,7 +130,7 @@ export async function handleAppStackAppReleaseWorkflowTools(request: any) {
         content: [{ type: "text", text: JSON.stringify(passValidateResult, null, 2) }],
       };
       
-    case 'get_app_release_stage_execution_pipeline_job_log':
+    case 'get_app_release_stage_pipeline_job_log':
       const getJobLogParams = GetAppReleaseStageExecutionPipelineJobLogRequestSchema.parse(request.params.arguments);
       const getJobLogResult = await getAppReleaseStageExecutionPipelineJobLog(getJobLogParams);
       return {
