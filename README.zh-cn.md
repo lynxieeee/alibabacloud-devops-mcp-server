@@ -447,25 +447,118 @@ x-yunxiao-token: USER_SPECIFIC_TOKEN
 ### 工具集（Toolsets）
 服务器现在支持工具集功能，允许您只启用需要的工具。这可以减少提供给AI助手的工具数量，提高性能。
 
-可用的工具集：
-- `organization-management`: 组织管理工具（组织列表、组织信息、部门信息、组织角色、成员信息等）
-- `code-management`: 代码仓库管理工具（代码仓库管理、分支管理、合并请求管理、文件树等）
-- `project-management`: 项目管理工具（项目管理、工作项管理、工作项字段、工作项评论、工时管理等）
-- `pipeline-management`: 流水线管理工具（流水线列表、流水线管理、资源管理、标签管理、部署管理等）
-- `packages-management`: 制品仓库管理工具(制品仓库、制品列表等)
-- `application-delivery`: 应用交付工具（部署单管理、应用管理、应用标签、变量组管理等）
-- `test-management`: 测试管理工具（测试用例管理、测试用例目录、测试计划、测试结果等）
+#### 可用的工具集
+
+**代码管理**
+- `code-repo`: 代码仓库操作
+- `code-branch`: 分支管理
+- `code-file`: 文件操作
+- `code-change-request`: 变更请求/合并请求
+- `code-commit`: 提交历史
+- `code-management`: 所有代码管理工具（包含以上所有）
+
+**组织管理**
+- `organization`: 组织管理
+- `organization-management`: 组织管理工具（别名）
+
+**项目管理**
+- `project`: 项目管理
+- `workitem`: 工作项管理
+- `sprint`: 迭代管理
+- `effort`: 工时管理
+- `project-management`: 所有项目管理工具（包含以上所有）
+
+**流水线管理**
+- `pipeline`: 流水线管理
+- `pipeline-job`: 流水线任务
+- `service-connection`: 服务连接
+- `vm-deploy`: 虚拟机部署
+- `resource-member`: 资源成员
+- `tag`: 标签管理
+- `pipeline-management`: 所有流水线管理工具（包含以上所有）
+
+**制品管理**
+- `package-repo`: 制品仓库
+- `package-artifact`: 制品版本
+- `packages-management`: 所有制品管理工具（包含以上所有）
+
+**应用交付**
+- `appstack-app`: 应用管理
+- `appstack-tag`: 应用标签
+- `appstack-template`: 应用模板
+- `appstack-variable`: 变量管理（全局变量+变量组）
+- `appstack-orchestration`: 应用编排
+- `appstack-change-request`: 变更请求
+- `appstack-deployment`: 部署资源
+- `appstack-change-order`: 变更单
+- `appstack-release-workflow`: 发布工作流
+- `application-delivery`: 所有应用交付工具（包含以上所有）
+
+**测试管理**
+- `testcase`: 测试用例
+- `testplan`: 测试计划
+- `testresult`: 测试结果
+- `test-management`: 所有测试管理工具（包含以上所有）
+
+#### 只读模式（Read-Only Mode）
+
+如果您只想使用只读工具（查询、列表等操作），可以启用只读模式。只读模式会自动过滤掉所有写操作工具（创建、更新、删除等）。
+
+通过命令行参数启用：
+```bash
+npx -y alibabacloud-devops-mcp-server --read-only
+```
+
+通过环境变量启用：
+```bash
+DEVOPS_READ_ONLY=true npx -y alibabacloud-devops-mcp-server
+```
+
+只读模式可以与工具集配合使用：
+```bash
+# 只启用代码管理的只读工具
+npx -y alibabacloud-devops-mcp-server --toolsets=code-management --read-only
+```
+
+#### 使用示例
 
 要使用工具集，您可以通过命令行参数或环境变量来指定：
 
 1. 通过命令行参数，示例：
 ```bash
+# 使用完整模块工具集
 npx -y alibabacloud-devops-mcp-server --toolsets=code-management,project-management
+
+# 使用特定功能工具集
+npx -y alibabacloud-devops-mcp-server --toolsets=code-branch,code-file,workitem
+
+# 组合使用不同工具集
+npx -y alibabacloud-devops-mcp-server --toolsets=code-branch,project-management
 ```
 
 2. 通过环境变量，示例：
 ```bash
 DEVOPS_TOOLSETS=code-management,project-management npx -y alibabacloud-devops-mcp-server
+```
+
+3. 在 MCP 客户端配置文件中配置：
+```json
+{
+  "mcpServers": {
+    "yunxiao": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "alibabacloud-devops-mcp-server",
+        "--toolsets=code-branch,workitem,pipeline",
+        "--read-only"
+      ],
+      "env": {
+        "YUNXIAO_ACCESS_TOKEN": "<YOUR_TOKEN>"
+      }
+    }
+  }
+}
 ```
 
 如果没有指定工具集，将默认启用所有工具。

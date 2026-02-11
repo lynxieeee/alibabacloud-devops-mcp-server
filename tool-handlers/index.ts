@@ -20,17 +20,68 @@ import { handleVMDeployOrderTools } from './vmDeployOrder.js';
 import { handleCommitTools } from './commit.js';
 import { handleBaseTools } from './base.js';
 import { handleTestManagementTools } from './test-management.js';
+import { handleTagTools } from './tag.js';
 import { Toolset } from '../common/toolsets.js';
 
 // 定义处理函数映射
 const HANDLER_MAP: Record<Toolset, (request: any) => Promise<any>> = {
   [Toolset.BASE]: handleBaseTools,
+  
+  // Code Management - granular toolsets
+  [Toolset.CODE_REPO]: handleCodeManagementTools,
+  [Toolset.CODE_BRANCH]: handleCodeManagementTools,
+  [Toolset.CODE_FILE]: handleCodeManagementTools,
+  [Toolset.CODE_CHANGE_REQUEST]: handleCodeManagementTools,
+  [Toolset.CODE_COMMIT]: handleCommitTools,
+  
+  // Organization Management - granular toolsets
+  [Toolset.ORGANIZATION]: handleOrganizationTools,
+  
+  // Project Management - granular toolsets
+  [Toolset.PROJECT]: handleProjectManagementTools,
+  [Toolset.WORKITEM]: handleProjectManagementTools,
+  [Toolset.SPRINT]: handleProjectManagementTools,
+  [Toolset.EFFORT]: handleEffortTools,
+  
+  // Pipeline Management - granular toolsets
+  [Toolset.PIPELINE]: handlePipelineTools,
+  [Toolset.PIPELINE_JOB]: handlePipelineTools,
+  [Toolset.SERVICE_CONNECTION]: handleServiceConnectionTools,
+  [Toolset.VM_DEPLOY]: handleVMDeployOrderTools,
+  [Toolset.RESOURCE_MEMBER]: handleResourceMemberTools,
+  [Toolset.TAG]: handleTagTools,
+  
+  // Package Management - granular toolsets
+  [Toolset.PACKAGE_REPO]: handlePackageManagementTools,
+  [Toolset.PACKAGE_ARTIFACT]: handlePackageManagementTools,
+  
+  // Application Delivery - granular toolsets
+  [Toolset.APPSTACK_APP]: handleAppStackTools,
+  [Toolset.APPSTACK_TAG]: handleAppStackTagTools,
+  [Toolset.APPSTACK_TEMPLATE]: handleAppStackTemplateTools,
+  [Toolset.APPSTACK_VARIABLE]: async (request: any) => {
+    const result = await handleAppStackGlobalVarTools(request);
+    if (result !== null) return result;
+    return await handleAppStackVariableGroupTools(request);
+  },
+  [Toolset.APPSTACK_ORCHESTRATION]: handleAppStackOrchestrationTools,
+  [Toolset.APPSTACK_CHANGE_REQUEST]: handleAppStackChangeRequestTools,
+  [Toolset.APPSTACK_DEPLOYMENT]: handleAppStackDeploymentResourceTools,
+  [Toolset.APPSTACK_CHANGE_ORDER]: handleAppStackChangeOrderTools,
+  [Toolset.APPSTACK_RELEASE_WORKFLOW]: handleAppStackAppReleaseWorkflowTools,
+  
+  // Test Management - granular toolsets
+  [Toolset.TESTCASE]: handleTestManagementTools,
+  [Toolset.TESTPLAN]: handleTestManagementTools,
+  [Toolset.TESTRESULT]: handleTestManagementTools,
+  
+  // Legacy aggregated toolsets for backward compatibility
   [Toolset.CODE_MANAGEMENT]: handleCodeManagementTools,
   [Toolset.ORGANIZATION_MANAGEMENT]: handleOrganizationTools,
   [Toolset.PROJECT_MANAGEMENT]: handleProjectManagementTools,
   [Toolset.PIPELINE_MANAGEMENT]: handlePipelineTools,
   [Toolset.PACKAGES_MANAGEMENT]: handlePackageManagementTools,
-  [Toolset.APPLICATION_DELIVERY]: handleAppStackTools, // 注意：这里只使用了主处理函数，其他AppStack处理函数在内部处理
+  [Toolset.APPLICATION_DELIVERY]: handleAppStackTools,
   [Toolset.TEST_MANAGEMENT]: handleTestManagementTools,
 }
 

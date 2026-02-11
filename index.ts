@@ -33,7 +33,7 @@ import {
 import { VERSION } from "./common/version.js";
 import {config} from "dotenv";
 import * as types from "./common/types.js";
-import { getAllTools, getEnabledTools } from "./tool-registry/index.js";
+import { getAllTools, getEnabledTools, filterReadOnlyTools } from "./tool-registry/index.js";
 import { handleToolRequest, handleEnabledToolRequest } from "./tool-handlers/index.js";
 import { Toolset } from "./common/toolsets.js";
 
@@ -121,17 +121,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     let tools: any[];
     
     if (enabledToolsets.length > 0) {
-        // 获取基础工具（总是加载）
+        // Get base tools (always loaded)
         const baseTools = getEnabledTools([Toolset.BASE]);
         
-        // 获取启用的工具集工具
+        // Get enabled toolset tools
         const enabledTools = getEnabledTools(enabledToolsets);
         
-        // 合并基础工具和启用的工具集工具
+        // Merge base tools and enabled toolset tools
         tools = [...baseTools, ...enabledTools];
     } else {
-        // 如果没有指定启用的工具集，则获取所有工具（已包含基础工具）
+        // If no toolsets specified, get all tools (already includes base tools)
         tools = getAllTools();
+    }
+    
+    // Filter to read-only tools if read-only mode is enabled
+    if (readOnlyMode) {
+        tools = filterReadOnlyTools(tools);
     }
     
     return {
@@ -164,13 +169,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 config();
 
-// 解析启用的工具集
+// Parse enabled toolsets
 const parseEnabledToolsets = (input: string | undefined): Toolset[] => {
   if (!input) return [];
   
   return input.split(',').map(toolset => {
     const trimmed = toolset.trim() as Toolset;
-    // 验证工具集名称是否有效
+    // Validate toolset name
     if (!Object.values(Toolset).includes(trimmed)) {
       throw new Error(`Unknown toolset: ${trimmed}`);
     }
@@ -178,11 +183,16 @@ const parseEnabledToolsets = (input: string | undefined): Toolset[] => {
   });
 };
 
-// 获取启用的工具集（从命令行参数或环境变量）
+// Get enabled toolsets (from command line args or environment variables)
 const enabledToolsets = parseEnabledToolsets(
   process.argv.find(arg => arg.startsWith('--toolsets='))?.split('=')[1] || 
   process.env.DEVOPS_TOOLSETS
 );
+
+// Check if read-only mode is enabled
+const readOnlyMode = 
+  process.argv.includes('--read-only') || 
+  process.env.DEVOPS_READ_ONLY === 'true';
 
 // Check if we should run in SSE mode
 const useSSE = process.argv.includes('--sse') || process.env.MCP_TRANSPORT === 'sse';

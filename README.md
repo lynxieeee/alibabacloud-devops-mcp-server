@@ -451,25 +451,118 @@ If your Yunxiao MCP server is already running in SSE mode at `http://localhost:3
 ### Toolsets
 The server now supports toolsets, allowing you to enable only the tools you need. This can reduce the number of tools presented to the AI assistant and improve performance.
 
-Available toolsets:
-- `organization-management`: Organization management tools (organization list, organization details, department information, organizational roles, member information, etc.)
-- `code-management`: Code repository management tools (repository management, branch management, merge request management, file tree, etc.)
-- `project-management`: Project management tools (project management, work item management, work item fields, work item comments, time tracking, etc.)
-- `pipeline-management`: Pipeline management tools (pipeline list, pipeline configuration, resource management, tag management, deployment management, etc.)
-- `packages-management`: Artifact repository management tools (artifact repositories, artifact lists, etc.)
-- `application-delivery`: Application delivery tools (deployment order management, application management, application tags, variable group management, etc.)
-- `test-management`: Test management tools (test case management, test case directories, test plans, test results, etc.)
+#### Available Toolsets
+
+**Code Management**
+- `code-repo`: Repository operations
+- `code-branch`: Branch management
+- `code-file`: File operations
+- `code-change-request`: Change/merge requests
+- `code-commit`: Commit history
+- `code-management`: All code management tools (includes all above)
+
+**Organization Management**
+- `organization`: Organization management
+- `organization-management`: Organization management tools (alias)
+
+**Project Management**
+- `project`: Project management
+- `workitem`: Work item management
+- `sprint`: Sprint management
+- `effort`: Time tracking
+- `project-management`: All project management tools (includes all above)
+
+**Pipeline Management**
+- `pipeline`: Pipeline management
+- `pipeline-job`: Pipeline jobs
+- `service-connection`: Service connections
+- `vm-deploy`: VM deployment
+- `resource-member`: Resource members
+- `tag`: Tag management
+- `pipeline-management`: All pipeline management tools (includes all above)
+
+**Package Management**
+- `package-repo`: Package repositories
+- `package-artifact`: Package versions
+- `packages-management`: All package management tools (includes all above)
+
+**Application Delivery**
+- `appstack-app`: Application management
+- `appstack-tag`: Application tags
+- `appstack-template`: Application templates
+- `appstack-variable`: Variable management (global vars + variable groups)
+- `appstack-orchestration`: Application orchestration
+- `appstack-change-request`: Change requests
+- `appstack-deployment`: Deployment resources
+- `appstack-change-order`: Change orders
+- `appstack-release-workflow`: Release workflows
+- `application-delivery`: All application delivery tools (includes all above)
+
+**Test Management**
+- `testcase`: Test cases
+- `testplan`: Test plans
+- `testresult`: Test results
+- `test-management`: All test management tools (includes all above)
+
+#### Read-Only Mode
+
+If you only want to use read-only tools (get, list, search operations), you can enable read-only mode. This automatically filters out all write operations (create, update, delete, etc.).
+
+Enable via command line:
+```bash
+npx -y alibabacloud-devops-mcp-server --read-only
+```
+
+Enable via environment variable:
+```bash
+DEVOPS_READ_ONLY=true npx -y alibabacloud-devops-mcp-server
+```
+
+Combine with toolsets:
+```bash
+# Only enable read-only code management tools
+npx -y alibabacloud-devops-mcp-server --toolsets=code-management --read-only
+```
+
+#### Usage Examples
 
 To use toolsets, you can specify them via command line arguments or environment variables:
 
 1. Via command line argument:
 ```bash
+# Use complete module toolsets
 npx -y alibabacloud-devops-mcp-server --toolsets=code-management,project-management
+
+# Use specific feature toolsets
+npx -y alibabacloud-devops-mcp-server --toolsets=code-branch,code-file,workitem
+
+# Combine different toolsets
+npx -y alibabacloud-devops-mcp-server --toolsets=code-branch,project-management
 ```
 
 2. Via environment variable:
 ```bash
 DEVOPS_TOOLSETS=code-management,project-management npx -y alibabacloud-devops-mcp-server
+```
+
+3. In MCP client configuration:
+```json
+{
+  "mcpServers": {
+    "yunxiao": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "alibabacloud-devops-mcp-server",
+        "--toolsets=code-branch,workitem,pipeline",
+        "--read-only"
+      ],
+      "env": {
+        "YUNXIAO_ACCESS_TOKEN": "<YOUR_TOKEN>"
+      }
+    }
+  }
+}
 ```
 
 If no toolsets are specified, all tools will be enabled by default.
