@@ -1,3 +1,5 @@
+// TODO: Tag management handlers are not available in private deployment Yunxiao
+// These handlers may need to be disabled or made conditional based on deployment type
 import * as tag from '../operations/flow/tag.js';
 import * as types from '../common/types.js';
 

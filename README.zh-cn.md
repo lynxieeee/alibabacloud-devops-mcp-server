@@ -80,13 +80,13 @@ alibabacloud-devops-mcp-server集成了多种工具，包括：
 - `get_work_item_workflow`: 获取工作项类型的工作流信息
 - `list_work_item_comments`: 列出特定工作项的评论
 - `create_work_item_comment`: 为特定工作项创建评论
-- `list_current_user_effort_records`: [项目管理] 获取用户的实际工时明细，结束时间和开始时间的间隔不能大于6个月
-- `list_effort_records`: [项目管理] 获取实际工时明细
-- `create_effort_record`: [项目管理] 登记实际工时
-- `list_estimated_efforts`: [项目管理] 获取预计工时明细
-- `create_estimated_effort`: [项目管理] 登记预计工时
-- `update_effort_record`: [项目管理] 更新登记实际工时
-- `update_estimated_effort`: [项目管理] 更新登记预计工时
+- `list_current_user_effort_records`: 获取用户的实际工时明细，结束时间和开始时间的间隔不能大于6个月
+- `list_effort_records`: 获取实际工时明细
+- `create_effort_record`: 登记实际工时
+- `list_estimated_efforts`: 获取预计工时明细
+- `create_estimated_effort`: 登记预计工时
+- `update_effort_record`: 更新登记实际工时
+- `update_estimated_effort`: 更新登记预计工时
 
 ###  流水线工具
 - `get_pipeline` - 获取流水线详情
@@ -127,67 +127,67 @@ alibabacloud-devops-mcp-server集成了多种工具，包括：
 
 ### 应用交付工具
 
-- `create_change_order`: [应用交付] 创建部署单
-- `list_change_order_versions`: [应用交付] 查看部署单版本列表
-- `get_change_order`: [应用交付] 读取部署单使用的物料和工单状态
-- `list_change_order_job_logs`: [应用交付] 查询环境部署单日志
-- `find_task_operation_log`: [应用交付] 查询部署任务执行日志，其中通常包含下游部署引擎的调度细节信息
-- `execute_job_action`: [应用交付] 操作环境部署单
-- `list_change_orders_by_origin`: [应用交付] 根据创建来源查询部署单
-- `create_appstack_change_request`: [应用交付] 创建变更请求
-- `get_appstack_change_request_audit_items`: [应用交付] 获取变更请求的审批项
-- `list_appstack_change_request_executions`: [应用交付] 列出变更请求的执行记录
-- `list_appstack_change_request_work_items`: [应用交付] 列出变更请求的工作项
-- `cancel_appstack_change_request`: [应用交付] 取消变更请求
-- `close_appstack_change_request`: [应用交付] 关闭变更请求
-- `list_applications`: [应用交付] 分页获取组织中的应用列表
-- `get_application`: [应用交付] 根据应用名获取应用详情
-- `create_application`: [应用交付] 创建应用
-- `update_application`: [应用交付] 更新应用
-- `get_latest_orchestration`: [应用交付] 获取环境的最新编排
-- `list_app_orchestration`: [应用交付] 列出应用编排
-- `create_app_orchestration`: [应用交付] 创建应用编排
-- `delete_app_orchestration`: [应用交付] 删除应用编排
-- `get_app_orchestration`: [应用交付] 获取应用编排
-- `update_app_orchestration`: [应用交付] 更新应用编排
-- `get_env_variable_groups`: [应用交付] 获取环境的变量组
-- `create_variable_group`: [应用交付] 创建变量组
-- `delete_variable_group`: [应用交付] 删除变量组
-- `get_variable_group`: [应用交付] 获取变量组
-- `update_variable_group`: [应用交付] 更新变量组
-- `get_app_variable_groups`: [应用交付] 获取应用的变量组
-- `get_app_variable_groups_revision`: [应用交付] 获取应用变量组的版本
-- `search_app_templates`: [应用交付] 搜索应用模板
-- `create_app_tag`: [应用交付] 创建应用标签
-- `update_app_tag`: [应用交付] 更新应用标签
-- `search_app_tags`: [应用交付] 搜索应用标签
-- `update_app_tag_bind`: [应用交付] 更新应用标签绑定
-- `create_global_var`: [应用交付] 创建全局变量组
-- `get_global_var`: [应用交付] 获取全局变量组
-- `update_global_var`: [应用交付] 更新全局变量组
-- `list_global_vars`: [应用交付] 列出全局变量组
-- `get_machine_deploy_log`: [应用交付] 获取机器部署日志
-- `add_host_list_to_host_group`: [应用交付] 添加主机列表到主机组
-- `add_host_list_to_deploy_group`: [应用交付] 添加主机列表到部署组
-- `list_system_release_workflows`: [应用交付] 查询系统下所有发布流程
-- `create_system_release_workflow`: [应用交付] 创建系统发布流程
-- `update_system_release_stage`: [应用交付] 更新系统发布流程阶段
-- `execute_system_release_stage`: [应用交付] 执行系统发布流程阶段
-- `list_app_release_workflows`: [应用交付] 查询应用下所有发布流程
-- `list_app_release_workflow_briefs`: [应用交付] 查询应用下所有发布流程摘要
-- `get_app_release_workflow_stage`: [应用交付] 获取发布流程阶段详情
-- `list_app_release_stage_briefs`: [应用交付] 查询发布流程阶段摘要列表
-- `update_app_release_stage`: [应用交付] 更新应用发布流程阶段
-- `list_app_release_stage_runs`: [应用交付] 查询发布流程阶段执行记录列表
-- `execute_app_release_stage`: [应用交付] 执行变更请求的发布流程阶段
-- `cancel_app_release_stage_execution`: [应用交付] 取消发布流程阶段执行
-- `retry_app_release_stage_pipeline`: [应用交付] 重试变更请求的发布流程阶段流水线
-- `skip_app_release_stage_pipeline`: [应用交付] 跳过变更请求的发布流程阶段流水线
-- `list_app_release_stage_exec_metadata`: [应用交付] 查询研发阶段执行记录集成变更信息
-- `get_app_release_stage_pipeline_run`: [应用交付] 获取研发阶段流水线运行实例
-- `pass_app_release_stage_pipeline_validate`: [应用交付] 通过发布流程阶段验证
-- `get_app_release_stage_pipeline_job_log`: [应用交付] 查询研发阶段流水线任务运行日志
-- `refuse_app_release_stage_pipeline_validate`: [应用交付] 拒绝发布流程阶段验证
+- `create_change_order`: 创建部署单
+- `list_change_order_versions`: 查看部署单版本列表
+- `get_change_order`: 读取部署单使用的物料和工单状态
+- `list_change_order_job_logs`: 查询环境部署单日志
+- `find_task_operation_log`: 查询部署任务执行日志，其中通常包含下游部署引擎的调度细节信息
+- `execute_job_action`: 操作环境部署单
+- `list_change_orders_by_origin`: 根据创建来源查询部署单
+- `create_appstack_change_request`: 创建变更请求
+- `get_appstack_change_request_audit_items`: 获取变更请求的审批项
+- `list_appstack_change_request_executions`: 列出变更请求的执行记录
+- `list_appstack_change_request_work_items`: 列出变更请求的工作项
+- `cancel_appstack_change_request`: 取消变更请求
+- `close_appstack_change_request`: 关闭变更请求
+- `list_applications`: 分页获取组织中的应用列表
+- `get_application`: 根据应用名获取应用详情
+- `create_application`: 创建应用
+- `update_application`: 更新应用
+- `get_latest_orchestration`: 获取环境的最新编排
+- `list_app_orchestration`: 列出应用编排
+- `create_app_orchestration`: 创建应用编排
+- `delete_app_orchestration`: 删除应用编排
+- `get_app_orchestration`: 获取应用编排
+- `update_app_orchestration`: 更新应用编排
+- `get_env_variable_groups`: 获取环境的变量组
+- `create_variable_group`: 创建变量组
+- `delete_variable_group`: 删除变量组
+- `get_variable_group`: 获取变量组
+- `update_variable_group`: 更新变量组
+- `get_app_variable_groups`: 获取应用的变量组
+- `get_app_variable_groups_revision`: 获取应用变量组的版本
+- `search_app_templates`: 搜索应用模板
+- `create_app_tag`: 创建应用标签
+- `update_app_tag`: 更新应用标签
+- `search_app_tags`: 搜索应用标签
+- `update_app_tag_bind`: 更新应用标签绑定
+- `create_global_var`: 创建全局变量组
+- `get_global_var`: 获取全局变量组
+- `update_global_var`: 更新全局变量组
+- `list_global_vars`: 列出全局变量组
+- `get_machine_deploy_log`: 获取机器部署日志
+- `add_host_list_to_host_group`: 添加主机列表到主机组
+- `add_host_list_to_deploy_group`: 添加主机列表到部署组
+- `list_system_release_workflows`: 查询系统下所有发布流程
+- `create_system_release_workflow`: 创建系统发布流程
+- `update_system_release_stage`: 更新系统发布流程阶段
+- `execute_system_release_stage`: 执行系统发布流程阶段
+- `list_app_release_workflows`: 查询应用下所有发布流程
+- `list_app_release_workflow_briefs`: 查询应用下所有发布流程摘要
+- `get_app_release_workflow_stage`: 获取发布流程阶段详情
+- `list_app_release_stage_briefs`: 查询发布流程阶段摘要列表
+- `update_app_release_stage`: 更新应用发布流程阶段
+- `list_app_release_stage_runs`: 查询发布流程阶段执行记录列表
+- `execute_app_release_stage`: 执行变更请求的发布流程阶段
+- `cancel_app_release_stage_execution`: 取消发布流程阶段执行
+- `retry_app_release_stage_pipeline`: 重试变更请求的发布流程阶段流水线
+- `skip_app_release_stage_pipeline`: 跳过变更请求的发布流程阶段流水线
+- `list_app_release_stage_exec_metadata`: 查询研发阶段执行记录集成变更信息
+- `get_app_release_stage_pipeline_run`: 获取研发阶段流水线运行实例
+- `pass_app_release_stage_pipeline_validate`: 通过发布流程阶段验证
+- `get_app_release_stage_pipeline_job_log`: 查询研发阶段流水线任务运行日志
+- `refuse_app_release_stage_pipeline_validate`: 拒绝发布流程阶段验证
 
 ### 制品仓库工具
 
@@ -197,16 +197,16 @@ alibabacloud-devops-mcp-server集成了多种工具，包括：
 
 ### 测试管理工具
 
-- `list_testcase_directories`: [测试管理] 获取测试用例目录列表
-- `create_testcase_directory`: [测试管理] 创建测试用例目录
-- `get_testcase_field_config`: [测试管理] 获取测试用例字段配置
-- `create_testcase`: [测试管理] 创建测试用例
-- `search_testcases`: [测试管理] 搜索测试用例
-- `get_testcase`: [测试管理] 获取测试用例信息
-- `delete_testcase`: [测试管理] 删除测试用例
-- `list_test_plans`: [测试管理] 获取测试计划列表
-- `get_test_result_list`: [测试管理] 获取测试计划中测试用例列表
-- `update_test_result`: [测试管理] 更新测试结果
+- `list_testcase_directories`: 获取测试用例目录列表
+- `create_testcase_directory`: 创建测试用例目录
+- `get_testcase_field_config`: 获取测试用例字段配置
+- `create_testcase`: 创建测试用例
+- `search_testcases`: 搜索测试用例
+- `get_testcase`: 获取测试用例信息
+- `delete_testcase`: 删除测试用例
+- `list_test_plans`: 获取测试计划列表
+- `get_test_result_list`: 获取测试计划中测试用例列表
+- `update_test_result`: 更新测试结果
 
 ## 用法
 

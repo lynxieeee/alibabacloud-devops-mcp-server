@@ -83,13 +83,13 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 - `list_work_item_comments`: List comments for a specific work item
 - `create_work_item_comment`: Create a comment for a specific work item
 
-- `list_current_user_effort_records`: [Project Management] 获取用户的实际工时明细，结束时间和开始时间的间隔不能大于6个月
-- `list_effort_records`: [Project Management] 获取实际工时明细
-- `create_effort_record`: [Project Management] 登记实际工时
-- `list_estimated_efforts`: [Project Management] 获取预计工时明细
-- `create_estimated_effort`: [Project Management] 登记预计工时
-- `update_effort_record`: [Project Management] 更新登记实际工时
-- `update_estimated_effort`: [Project Management] 更新登记预计工时
+- `list_current_user_effort_records`: Get user's actual effort records, the interval between end time and start time cannot exceed 6 months
+- `list_effort_records`: Get actual effort records
+- `create_effort_record`: Register actual effort
+- `list_estimated_efforts`: Get estimated effort records
+- `create_estimated_effort`: Register estimated effort
+- `update_effort_record`: Update registered actual effort
+- `update_estimated_effort`: Update registered estimated effort
 
 ### Pipeline Management Tools
 
@@ -133,67 +133,67 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 
 ### Application Delivery Tools
 
-- `create_change_order`: [application delivery] 创建部署单
-- `list_change_order_versions`: [application delivery] 查看部署单版本列表
-- `get_change_order`: [application delivery] 读取部署单使用的物料和工单状态
-- `list_change_order_job_logs`: [application delivery] 查询环境部署单日志
-- `find_task_operation_log`: [application delivery] 查询部署任务执行日志，其中通常包含下游部署引擎的调度细节信息
-- `execute_job_action`: [application delivery] 操作环境部署单
-- `list_change_orders_by_origin`: [application delivery] 根据创建来源查询部署单
-- `create_appstack_change_request`: [application delivery] 创建变更请求
-- `get_appstack_change_request_audit_items`: [application delivery] 获取变更请求的审批项
-- `list_appstack_change_request_executions`: [application delivery] 列出变更请求的执行记录
-- `list_appstack_change_request_work_items`: [application delivery] 列出变更请求的工作项
-- `cancel_appstack_change_request`: [application delivery] 取消变更请求
-- `close_appstack_change_request`: [application delivery] 关闭变更请求
-- `list_applications`: [application delivery] List applications in an organization with pagination
-- `get_application`: [application delivery] Get application details by name
-- `create_application`: [application delivery] Create a new application
-- `update_application`: [application delivery] Update an existing application
-- `get_latest_orchestration`: [application delivery] Get the latest orchestration for an environment
-- `list_app_orchestration`: [application delivery] List application orchestrations
-- `create_app_orchestration`: [application delivery] Create an application orchestration
-- `delete_app_orchestration`: [application delivery] Delete an application orchestration
-- `get_app_orchestration`: [application delivery] Get an application orchestration
-- `update_app_orchestration`: [application delivery] Update an application orchestration
-- `get_env_variable_groups`: [application delivery] Get variable groups for an environment
-- `create_variable_group`: [application delivery] Create a variable group
-- `delete_variable_group`: [application delivery] Delete a variable group
-- `get_variable_group`: [application delivery] Get a variable group
-- `update_variable_group`: [application delivery] Update a variable group
-- `get_app_variable_groups`: [application delivery] Get variable groups for an application
-- `get_app_variable_groups_revision`: [application delivery] Get the revision of variable groups for an application
-- `search_app_templates`: [application delivery] Search application templates
-- `create_app_tag`: [application delivery] Create an application tag
-- `update_app_tag`: [application delivery] Update an application tag
-- `search_app_tags`: [application delivery] Search application tags
-- `update_app_tag_bind`: [application delivery] Update application tag bindings
-- `create_global_var`: [application delivery] Create a global variable group
-- `get_global_var`: [application delivery] Get a global variable group
-- `update_global_var`: [application delivery] Update a global variable group
-- `list_global_vars`: [application delivery] List global variable groups
-- `get_machine_deploy_log`: [application delivery] Get machine deployment log
-- `add_host_list_to_host_group`: [application delivery] Add host list to host group
-- `add_host_list_to_deploy_group`: [application delivery] Add host list to deploy group
-- `list_system_release_workflows`: [application delivery] List all release workflows for a system
-- `create_system_release_workflow`: [application delivery] Create a system release workflow
-- `update_system_release_stage`: [application delivery] Update a system release workflow stage
-- `execute_system_release_stage`: [application delivery] Execute a system release workflow stage
-- `list_app_release_workflows`: [application delivery] List all release workflows for an application
-- `list_app_release_workflow_briefs`: [application delivery] List release workflow briefs for an application
-- `get_app_release_workflow_stage`: [application delivery] Get release workflow stage details
-- `list_app_release_stage_briefs`: [application delivery] List release stage briefs
-- `update_app_release_stage`: [application delivery] Update application release workflow stage
-- `list_app_release_stage_runs`: [application delivery] List release stage execution records
-- `execute_app_release_stage`: [application delivery] Execute release workflow stage for a change request
-- `cancel_app_release_stage_execution`: [application delivery] Cancel release workflow stage execution
-- `retry_app_release_stage_pipeline`: [application delivery] Retry release workflow stage pipeline
-- `skip_app_release_stage_pipeline`: [application delivery] Skip release workflow stage pipeline
-- `list_app_release_stage_exec_metadata`: [application delivery] List integrated metadata for stage execution
-- `get_app_release_stage_pipeline_run`: [application delivery] Get release stage pipeline run instance
-- `pass_app_release_stage_pipeline_validate`: [application delivery] Pass release workflow stage validation
-- `get_app_release_stage_pipeline_job_log`: [application delivery] Get pipeline job execution log
-- `refuse_app_release_stage_pipeline_validate`: [application delivery] Refuse release workflow stage validation
+- `create_change_order`: Create deployment order
+- `list_change_order_versions`: List deployment order versions
+- `get_change_order`: Get deployment order materials and order status
+- `list_change_order_job_logs`: Query environment deployment order logs
+- `find_task_operation_log`: Query deployment task execution logs, usually containing downstream deployment engine scheduling details
+- `execute_job_action`: Operate environment deployment order
+- `list_change_orders_by_origin`: Query deployment orders by creation source
+- `create_appstack_change_request`: Create change request
+- `get_appstack_change_request_audit_items`: Get change request audit items
+- `list_appstack_change_request_executions`: List change request executions
+- `list_appstack_change_request_work_items`: List change request work items
+- `cancel_appstack_change_request`: Cancel change request
+- `close_appstack_change_request`: Close change request
+- `list_applications`: List applications in an organization with pagination
+- `get_application`: Get application details by name
+- `create_application`: Create a new application
+- `update_application`: Update an existing application
+- `get_latest_orchestration`: Get the latest orchestration for an environment
+- `list_app_orchestration`: List application orchestrations
+- `create_app_orchestration`: Create an application orchestration
+- `delete_app_orchestration`: Delete an application orchestration
+- `get_app_orchestration`: Get an application orchestration
+- `update_app_orchestration`: Update an application orchestration
+- `get_env_variable_groups`: Get variable groups for an environment
+- `create_variable_group`: Create a variable group
+- `delete_variable_group`: Delete a variable group
+- `get_variable_group`: Get a variable group
+- `update_variable_group`: Update a variable group
+- `get_app_variable_groups`: Get variable groups for an application
+- `get_app_variable_groups_revision`: Get the revision of variable groups for an application
+- `search_app_templates`: Search application templates
+- `create_app_tag`: Create an application tag
+- `update_app_tag`: Update an application tag
+- `search_app_tags`: Search application tags
+- `update_app_tag_bind`: Update application tag bindings
+- `create_global_var`: Create a global variable group
+- `get_global_var`: Get a global variable group
+- `update_global_var`: Update a global variable group
+- `list_global_vars`: List global variable groups
+- `get_machine_deploy_log`: Get machine deployment log
+- `add_host_list_to_host_group`: Add host list to host group
+- `add_host_list_to_deploy_group`: Add host list to deploy group
+- `list_system_release_workflows`: List all release workflows for a system
+- `create_system_release_workflow`: Create a system release workflow
+- `update_system_release_stage`: Update a system release workflow stage
+- `execute_system_release_stage`: Execute a system release workflow stage
+- `list_app_release_workflows`: List all release workflows for an application
+- `list_app_release_workflow_briefs`: List release workflow briefs for an application
+- `get_app_release_workflow_stage`: Get release workflow stage details
+- `list_app_release_stage_briefs`: List release stage briefs
+- `update_app_release_stage`: Update application release workflow stage
+- `list_app_release_stage_runs`: List release stage execution records
+- `execute_app_release_stage`: Execute release workflow stage for a change request
+- `cancel_app_release_stage_execution`: Cancel release workflow stage execution
+- `retry_app_release_stage_pipeline`: Retry release workflow stage pipeline
+- `skip_app_release_stage_pipeline`: Skip release workflow stage pipeline
+- `list_app_release_stage_exec_metadata`: List integrated metadata for stage execution
+- `get_app_release_stage_pipeline_run`: Get release stage pipeline run instance
+- `pass_app_release_stage_pipeline_validate`: Pass release workflow stage validation
+- `get_app_release_stage_pipeline_job_log`: Get pipeline job execution log
+- `refuse_app_release_stage_pipeline_validate`: Refuse release workflow stage validation
 
 ### Packages Management Tools
 
@@ -203,16 +203,16 @@ alibabacloud-devops-mcp-server integrates various tools, including:
 
 ### Test Management Tools
 
-- `list_testcase_directories`: [test management] Get test case directory list
-- `create_testcase_directory`: [test management] Create a test case directory
-- `get_testcase_field_config`: [test management] Get test case field configuration
-- `create_testcase`: [test management] Create a test case
-- `search_testcases`: [test management] Search test cases
-- `get_testcase`: [test management] Get test case information
-- `delete_testcase`: [test management] Delete a test case
-- `list_test_plans`: [test management] Get test plan list
-- `get_test_result_list`: [test management] Get test case list in a test plan
-- `update_test_result`: [test management] Update test result
+- `list_testcase_directories`: Get test case directory list
+- `create_testcase_directory`: Create a test case directory
+- `get_testcase_field_config`: Get test case field configuration
+- `create_testcase`: Create a test case
+- `search_testcases`: Search test cases
+- `get_testcase`: Get test case information
+- `delete_testcase`: Delete a test case
+- `list_test_plans`: Get test plan list
+- `get_test_result_list`: Get test case list in a test plan
+- `update_test_result`: Update test result
 
 ## Usage
 

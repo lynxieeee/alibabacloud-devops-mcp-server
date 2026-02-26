@@ -10,22 +10,22 @@ import {
 export const getAppStackGlobalVarTools = () => [
   {
     name: 'create_global_var',
-    description: '[application delivery] Create a global variable group',
+    description: '[变量管理] 创建全局变量组',
     inputSchema: zodToJsonSchema(CreateGlobalVarRequestSchema),
   },
   {
     name: 'get_global_var',
-    description: '[application delivery] Get a global variable group',
+    description: '[变量管理] 获取全局变量组',
     inputSchema: zodToJsonSchema(GetGlobalVarRequestSchema),
   },
   {
     name: 'update_global_var',
-    description: '[application delivery] Update a global variable group',
+    description: '[变量管理] 更新全局变量组',
     inputSchema: zodToJsonSchema(UpdateGlobalVarRequestSchema),
   },
   {
     name: 'list_global_vars',
-    description: '[application delivery] List global variable groups',
+    description: '[变量管理] 列出全局变量组',
     inputSchema: zodToJsonSchema(ListGlobalVarsRequestSchema),
   }
 ];

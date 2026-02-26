@@ -5,67 +5,67 @@ import * as types from '../common/types.js';
 export const getOrganizationTools = () => [
   {
     name: "get_current_organization_info",
-    description: "Get information about the current user and organization based on the token. In the absence of an explicitly specified organization ID, this result will take precedence.",
+    description: "[组织管理] 获取当前用户所在组织信息",
     inputSchema: zodToJsonSchema(z.object({})),
   },
   {
     name: "get_user_organizations",
-    description: "Get the list of organizations the current user belongs to",
+    description: "[组织管理] 获取当前用户加入的组织列表",
     inputSchema: zodToJsonSchema(z.object({})),
   },
   {
     name: "get_current_user",
-    description: "Get information about the current user based on the token. In the absence of an explicitly specified user ID, this result will take precedence.",
+    description: "[组织管理] 根据令牌获取当前用户信息",
     inputSchema: zodToJsonSchema(z.object({})),
   },
   {
     name: "list_organization_departments",
-    description: "Get the list of departments in an organization",
+    description: "[组织管理] 获取组织中的部门列表",
     inputSchema: zodToJsonSchema(types.GetOrganizationDepartmentsSchema),
   },
   {
     name: "get_organization_department_info",
-    description: "Get information about a department in an organization",
+    description: "[组织管理] 获取组织中某个部门的信息",
     inputSchema: zodToJsonSchema(types.GetOrganizationDepartmentInfoSchema),
   },
   {
     name: "get_organization_department_ancestors",
-    description: "Get the ancestors of a department in an organization",
+    description: "[组织管理] 获取组织中部门的上级部门",
     inputSchema: zodToJsonSchema(types.GetOrganizationDepartmentAncestorsSchema),
   },
   {
     name: "list_organization_members",
-    description: "list user members in an organization",
+    description: "[组织管理] 获取组织成员列表",
     inputSchema: zodToJsonSchema(types.GetOrganizationMembersSchema),
   },
   {
     name: "get_organization_member_info",
-    description: "Get information about a member in an organization",
+    description: "[组织管理] 获取组织成员信息",
     inputSchema: zodToJsonSchema(types.GetOrganizationMemberInfoSchema),
   },
   {
     name: "get_organization_member_info_by_user_id",
-    description: "Get information about a member in an organization by user ID",
+    description: "[组织管理] 通过用户ID获取组织成员信息",
     inputSchema: zodToJsonSchema(types.GetOrganizationMemberByUserIdInfoSchema),
   },
   {
     name: "search_organization_members",
-    description: "[Organization Management] Search for organization members",
+    description: "[组织管理] 搜索组织成员",
     inputSchema: zodToJsonSchema(types.SearchOrganizationMembersSchema),
   },
   {
     name: "list_organization_roles",
-    description: "[Organization Management] List organization roles",
+    description: "[组织管理] 列出组织角色",
     inputSchema: zodToJsonSchema(types.ListOrganizationRolesSchema),
   },
   {
     name: "get_organization_role",
-    description: "[Organization Management] Get information about an organization role",
+    description: "[组织管理] 获取组织角色信息",
     inputSchema: zodToJsonSchema(types.GetOrganizationRoleSchema),
   },
   {
     name: "list_users",
-    description: "[Organization Management] List users, supports fuzzy search by username, login name, email, phone number, and filtering by status and department",
+    description: "[组织管理] 查询用户列表",
     inputSchema: zodToJsonSchema(types.ListUsersSchema),
   },
 ];

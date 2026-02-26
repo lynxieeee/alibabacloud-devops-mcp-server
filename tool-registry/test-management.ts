@@ -18,37 +18,37 @@ import {
 export const getTestManagementTools = () => [
   {
     name: 'list_testcase_directories',
-    description: '[test management] 获取测试用例目录列表',
+    description: '[测试用例] 获取测试用例目录列表',
     inputSchema: zodToJsonSchema(ListDirectoriesRequestSchema),
   },
   {
     name: 'create_testcase_directory',
-    description: '[test management] 创建测试用例目录',
+    description: '[测试用例] 创建测试用例目录',
     inputSchema: zodToJsonSchema(CreateTestcaseDirectoryRequestSchema),
   },
   {
     name: 'get_testcase_field_config',
-    description: '[test management] 获取测试用例字段配置',
+    description: '[测试用例] 获取测试用例字段配置',
     inputSchema: zodToJsonSchema(GetTestcaseFieldConfigRequestSchema),
   },
   {
     name: 'create_testcase',
-    description: '[test management] 创建测试用例',
+    description: '[测试用例] 创建测试用例',
     inputSchema: zodToJsonSchema(CreateTestcaseRequestSchema),
   },
   {
     name: 'search_testcases',
-    description: '[test management] 搜索测试用例',
+    description: '[测试用例] 搜索测试用例',
     inputSchema: zodToJsonSchema(SearchTestcasesRequestSchema),
   },
   {
     name: 'get_testcase',
-    description: '[test management] 获取测试用例信息',
+    description: '[测试用例] 获取测试用例信息',
     inputSchema: zodToJsonSchema(GetTestcaseRequestSchema),
   },
   {
     name: 'delete_testcase',
-    description: '[test management] 删除测试用例',
+    description: '[测试用例] 删除测试用例',
     inputSchema: zodToJsonSchema(DeleteTestcaseRequestSchema),
     annotations: {
       destructiveHint: true,
@@ -56,17 +56,17 @@ export const getTestManagementTools = () => [
   },
   {
     name: 'list_test_plans',
-    description: '[test management] 获取测试计划列表',
+    description: '[测试计划] 获取测试计划列表',
     inputSchema: zodToJsonSchema(ListTestPlanRequestSchema),
   },
   {
     name: 'get_test_result_list',
-    description: '[test management] 获取测试计划中测试用例列表',
+    description: '[测试结果] 获取测试计划中测试用例列表',
     inputSchema: zodToJsonSchema(GetTestResultListRequestSchema),
   },
   {
     name: 'update_test_result',
-    description: '[test management] 更新测试结果',
+    description: '[测试结果] 更新测试结果',
     inputSchema: zodToJsonSchema(UpdateTestResultRequestSchema),
   },
 ];

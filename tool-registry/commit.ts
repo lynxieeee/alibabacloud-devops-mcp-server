@@ -9,17 +9,17 @@ import {
 export const getCommitTools = () => [
   {
     name: 'list_commits',
-    description: '[Code Management] List commits in a Codeup repository',
+    description: '[提交历史] 查询提交记录列表',
     inputSchema: zodToJsonSchema(ListCommitsRequestSchema),
   },
   {
     name: 'get_commit',
-    description: '[Code Management] Get information about a commit',
+    description: '[提交历史] 获取提交记录信息',
     inputSchema: zodToJsonSchema(GetCommitRequestSchema),
   },
   {
     name: 'create_commit_comment',
-    description: '[Code Management] Create a comment on a commit',
+    description: '[提交历史] 创建提交评论',
     inputSchema: zodToJsonSchema(CreateCommitCommentRequestSchema),
   }
 ];

@@ -13,17 +13,17 @@ import {
 export const getAppStackDeploymentResourceTools = () => [
   {
     name: 'get_machine_deploy_log',
-    description: '[application delivery] Get machine deployment log',
+    description: '[部署资源] 获取机器部署日志',
     inputSchema: zodToJsonSchema(GetMachineDeployLogRequestSchema),
   },
   {
     name: 'add_host_list_to_host_group',
-    description: '[application delivery] Add host list to host group',
+    description: '[部署资源] 添加主机列表到主机组',
     inputSchema: zodToJsonSchema(AddHostListToHostGroupRequestSchema),
   },
   {
     name: 'add_host_list_to_deploy_group',
-    description: '[application delivery] Add host list to deploy group',
+    description: '[部署资源] 添加主机列表到部署组',
     inputSchema: zodToJsonSchema(AddHostListToDeployGroupRequestSchema),
   },
 ];

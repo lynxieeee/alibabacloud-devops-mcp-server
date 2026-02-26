@@ -13,37 +13,37 @@ import {
 export const getAppStackVariableGroupTools = () => [
   {
     name: 'get_env_variable_groups',
-    description: '[application delivery] Get variable groups for an environment',
+    description: '[变量管理] 获取环境的变量组',
     inputSchema: zodToJsonSchema(GetEnvVariableGroupsRequestSchema),
   },
   {
     name: 'create_variable_group',
-    description: '[application delivery] Create a variable group',
+    description: '[变量管理] 创建变量组',
     inputSchema: zodToJsonSchema(CreateVariableGroupRequestSchema),
   },
   {
     name: 'delete_variable_group',
-    description: '[application delivery] Delete a variable group',
+    description: '[变量管理] 删除变量组',
     inputSchema: zodToJsonSchema(DeleteVariableGroupRequestSchema),
   },
   {
     name: 'get_variable_group',
-    description: '[application delivery] Get a variable group',
+    description: '[变量管理] 获取变量组',
     inputSchema: zodToJsonSchema(GetVariableGroupRequestSchema),
   },
   {
     name: 'update_variable_group',
-    description: '[application delivery] Update a variable group',
+    description: '[变量管理] 更新变量组',
     inputSchema: zodToJsonSchema(UpdateVariableGroupRequestSchema),
   },
   {
     name: 'get_app_variable_groups',
-    description: '[application delivery] Get variable groups for an application',
+    description: '[变量管理] 获取应用的变量组',
     inputSchema: zodToJsonSchema(GetAppVariableGroupsRequestSchema),
   },
   {
     name: 'get_app_variable_groups_revision',
-    description: '[application delivery] Get the revision of variable groups for an application',
+    description: '[变量管理] 获取应用变量组的版本',
     inputSchema: zodToJsonSchema(GetAppVariableGroupsRevisionRequestSchema),
   }
 ];

@@ -4,17 +4,17 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 export const getBaseTools = () => [
   {
     name: "get_current_organization_info",
-    description: "Get information about the current user and organization based on the token. In the absence of an explicitly specified organization ID, this result will take precedence.",
+    description: "[组织管理] 获取当前用户所在组织信息",
     inputSchema: zodToJsonSchema(z.object({})),
   },
   {
     name: "get_user_organizations",
-    description: "Get the list of organizations the current user belongs to",
+    description: "[组织管理] 获取当前用户加入的组织列表",
     inputSchema: zodToJsonSchema(z.object({})),
   },
   {
     name: "get_current_user",
-    description: "Get information about the current user based on the token. In the absence of an explicitly specified user ID, this result will take precedence.",
+    description: "[组织管理] 根据 token 获取当前用户信息",
     inputSchema: zodToJsonSchema(z.object({})),
   }
 ];

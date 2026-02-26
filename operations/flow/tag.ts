@@ -1,3 +1,5 @@
+// TODO: Tag management APIs are not available in private deployment Yunxiao
+// These interfaces need to be verified and may need to be disabled for private deployment
 import * as utils from "../../common/utils.js";
 import { z } from "zod";
 

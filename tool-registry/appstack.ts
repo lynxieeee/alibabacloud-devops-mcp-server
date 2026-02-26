@@ -11,22 +11,22 @@ import {
 export const getAppStackTools = () => [
   {
     name: 'list_applications',
-    description: '[application delivery] List applications in an organization with pagination',
+    description: '[应用管理] 分页获取组织中的应用列表',
     inputSchema: zodToJsonSchema(ListApplicationsRequestSchema),
   },
   {
     name: 'get_application',
-    description: '[application delivery] Get application details by name',
+    description: '[应用管理] 根据应用名获取应用详情',
     inputSchema: zodToJsonSchema(GetApplicationRequestSchema),
   },
   {
     name: 'create_application',
-    description: '[application delivery] Create a new application',
+    description: '[应用管理] 创建应用',
     inputSchema: zodToJsonSchema(CreateApplicationRequestSchema),
   },
   {
     name: 'update_application',
-    description: '[application delivery] Update an existing application',
+    description: '[应用管理] 更新应用',
     inputSchema: zodToJsonSchema(UpdateApplicationRequestSchema),
   }
 ];

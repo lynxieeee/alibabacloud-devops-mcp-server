@@ -6,109 +6,103 @@ export const getCodeManagementTools = () => [
   // Branch Operations
   {
     name: "create_branch",
-    description: "[Code Management] Create a new branch in a Codeup repository",
+    description: "[分支管理] 创建分支",
     inputSchema: zodToJsonSchema(types.CreateBranchSchema),
   },
   {
     name: "get_branch",
-    description: "[Code Management] Get information about a branch in a Codeup repository",
+    description: "[分支管理] 获取分支信息",
     inputSchema: zodToJsonSchema(types.GetBranchSchema),
   },
   {
     name: "delete_branch",
-    description: "[Code Management] Delete a branch from a Codeup repository",
+    description: "[分支管理] 删除分支",
     inputSchema: zodToJsonSchema(types.DeleteBranchSchema),
   },
   {
     name: "list_branches",
-    description: "[Code Management] List branches in a Codeup repository",
+    description: "[分支管理] 获取分支列表",
     inputSchema: zodToJsonSchema(types.ListBranchesSchema),
   },
 
   // File Operations
   {
     name: "get_file_blobs",
-    description: "[Code Management] Get file content from a Codeup repository",
+    description: "[文件操作] 获取文件内容",
     inputSchema: zodToJsonSchema(types.GetFileBlobsSchema),
   },
   {
     name: "create_file",
-    description: "[Code Management] Create a new file in a Codeup repository",
+    description: "[文件操作] 创建文件",
     inputSchema: zodToJsonSchema(types.CreateFileSchema),
   },
   {
     name: "update_file",
-    description: "[Code Management] Update an existing file in a Codeup repository",
+    description: "[文件操作] 更新文件内容",
     inputSchema: zodToJsonSchema(types.UpdateFileSchema),
   },
   {
     name: "delete_file",
-    description: "[Code Management] Delete a file from a Codeup repository",
+    description: "[文件操作] 删除文件",
     inputSchema: zodToJsonSchema(types.DeleteFileSchema),
   },
   {
     name: "list_files",
-    description: "[Code Management] List file tree from a Codeup repository",
+    description: "[文件操作] 查询文件树",
     inputSchema: zodToJsonSchema(types.ListFilesSchema),
   },
   {
     name: "compare",
-    description: "[Code Management] Query code to compare content",
+    description: "[文件操作] 代码比较",
     inputSchema: zodToJsonSchema(types.GetCompareSchema),
   },
 
   // Repository Operations
   {
     name: "get_repository",
-    description: "[Code Management] Get information about a Codeup repository",
+    description: "[代码仓库] 获取仓库详情",
     inputSchema: zodToJsonSchema(types.GetRepositorySchema),
   },
   {
     name: "list_repositories",
-    description: "[Code Management] Get the CodeUp Repository List.\n" +
-      "\n" +
-      "A Repository serves as a unit for managing source code and is distinct from a Project.\n" +
-      "\n" +
-      "Use Case:\n" +
-      "\n" +
-      "View my repositories",
+    description: "[代码仓库] 获取仓库列表",
     inputSchema: zodToJsonSchema(types.ListRepositoriesSchema),
   },
 
   // Change Request Operations
   {
     name: "get_change_request",
-    description: "[Code Management] Get detailed information about a specific change request (merge request) by its local ID.",
+    description: "[合并请求] 查询合并请求",
     inputSchema: zodToJsonSchema(types.GetChangeRequestSchema),
   },
   {
     name: "list_change_requests",
-    description: "[Code Management] List change requests with multi-condition filtering, pagination and sorting. Supports filtering by repository, author, reviewer, state (opened/merged/closed), search keywords, and creation time range.",
+    description: "[合并请求] 查询合并请求列表",
     inputSchema: zodToJsonSchema(types.ListChangeRequestsSchema),
   },
   {
     name: "create_change_request",
-    description: "[Code Management] Create a new change request (merge request). Supports specifying source/target branches, reviewers, associated work items, and optional AI review trigger.",
+    description: "[合并请求] 创建合并请求",
     inputSchema: zodToJsonSchema(types.CreateChangeRequestSchema),
   },
   {
     name: "create_change_request_comment",
-    description: "[Code Management] Create a comment on a change request. Supports two types: GLOBAL_COMMENT (global comment on the entire merge request) and INLINE_COMMENT (inline comment on specific code lines). For INLINE_COMMENT, you must provide file_path, line_number, from_patchset_biz_id, and to_patchset_biz_id parameters.",
+    description: "[合并请求] 创建合并请求评论",
     inputSchema: zodToJsonSchema(types.CreateChangeRequestCommentSchema),
   },
   {
     name: "list_change_request_comments",
-    description: "[Code Management] List comments on a change request. Supports filtering by comment type (GLOBAL_COMMENT or INLINE_COMMENT), state (OPENED or DRAFT), resolved status, and file path (for inline comments).",
+    description: "[合并请求] 查询合并请求评论列表",
     inputSchema: zodToJsonSchema(types.ListChangeRequestCommentsSchema),
   },
   {
     name: "update_change_request_comment",
-    description: "[Code Management] Update a comment on a change request. Can update the comment content and/or resolved status.",
+    description: "[合并请求] 更新合并请求评论",
     inputSchema: zodToJsonSchema(types.UpdateChangeRequestCommentSchema),
   },
   {
     name: "list_change_request_patch_sets",
-    description: "[Code Management] List patch sets (versions) for a change request. Patch sets represent different versions of the merge request as it evolves.",
+    description: "[合并请求] 查询合并请求版本列表",
     inputSchema: zodToJsonSchema(types.ListChangeRequestPatchSetsSchema),
   },
 ];

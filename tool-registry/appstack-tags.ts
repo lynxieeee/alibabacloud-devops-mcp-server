@@ -11,22 +11,22 @@ import {
 export const getAppStackTagTools = () => [
   {
     name: 'create_app_tag',
-    description: '[application delivery] Create an application tag',
+    description: '[应用标签] 创建应用标签',
     inputSchema: zodToJsonSchema(CreateAppTagRequestSchema),
   },
   {
     name: 'update_app_tag',
-    description: '[application delivery] Update an application tag',
+    description: '[应用标签] 更新应用标签',
     inputSchema: zodToJsonSchema(UpdateAppTagRequestSchema),
   },
   {
     name: 'search_app_tags',
-    description: '[application delivery] Search application tags',
+    description: '[应用标签] 搜索应用标签',
     inputSchema: zodToJsonSchema(SearchAppTagRequestSchema),
   },
   {
     name: 'update_app_tag_bind',
-    description: '[application delivery] Update application tag bindings',
+    description: '[应用标签] 更新应用标签绑定',
     inputSchema: zodToJsonSchema(UpdateAppTagBindRequestSchema),
   }
 ];
