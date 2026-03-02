@@ -18,6 +18,7 @@ import { getAppStackChangeRequestTools } from '../tool-registry/appstack-change-
 import { getAppStackDeploymentResourceTools } from '../tool-registry/appstack-deployment-resources.js';
 import { getAppStackChangeOrderTools } from '../tool-registry/appstack-change-orders.js';
 import { getAppStackAppReleaseWorkflowTools } from '../tool-registry/appstack-app-release-workflows.js';
+import { getAppStackReleaseWorkflowTools } from '../tool-registry/appstack-release-workflows.js';
 import { getEffortTools } from '../tool-registry/effort.js';
 import { getResourceMemberTools } from '../tool-registry/resourceMember.js';
 import { getVMDeployOrderTools } from '../tool-registry/vmDeployOrder.js';
@@ -242,7 +243,10 @@ const ALL_TOOLSET_CONFIGS: Record<Toolset, ToolsetConfig> = {
   [Toolset.APPSTACK_RELEASE_WORKFLOW]: {
     name: Toolset.APPSTACK_RELEASE_WORKFLOW,
     description: "Release workflows",
-    tools: getAppStackAppReleaseWorkflowTools as () => Tool[]
+    tools: (() => [
+      ...getAppStackReleaseWorkflowTools(),
+      ...getAppStackAppReleaseWorkflowTools()
+    ]) as () => Tool[]
   },
   
   // Test Management
@@ -336,6 +340,7 @@ const ALL_TOOLSET_CONFIGS: Record<Toolset, ToolsetConfig> = {
       ...getAppStackChangeRequestTools(),
       ...getAppStackDeploymentResourceTools(),
       ...getAppStackChangeOrderTools(),
+      ...getAppStackReleaseWorkflowTools(),
       ...getAppStackAppReleaseWorkflowTools()
     ]) as () => Tool[]
   },

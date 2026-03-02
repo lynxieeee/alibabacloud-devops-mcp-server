@@ -14,6 +14,7 @@ import { handleAppStackChangeRequestTools } from './appstack-change-requests.js'
 import { handleAppStackDeploymentResourceTools } from './appstack-deployment-resources.js';
 import { handleAppStackChangeOrderTools } from './appstack-change-orders.js';
 import { handleAppStackAppReleaseWorkflowTools } from './appstack-app-release-workflows.js';
+import { handleAppStackReleaseWorkflowTools } from './appstack-release-workflows.js';
 import { handleEffortTools } from './effort.js';
 import { handleResourceMemberTools } from './resourceMember.js';
 import { handleVMDeployOrderTools } from './vmDeployOrder.js';
@@ -68,7 +69,11 @@ const HANDLER_MAP: Record<Toolset, (request: any) => Promise<any>> = {
   [Toolset.APPSTACK_CHANGE_REQUEST]: handleAppStackChangeRequestTools,
   [Toolset.APPSTACK_DEPLOYMENT]: handleAppStackDeploymentResourceTools,
   [Toolset.APPSTACK_CHANGE_ORDER]: handleAppStackChangeOrderTools,
-  [Toolset.APPSTACK_RELEASE_WORKFLOW]: handleAppStackAppReleaseWorkflowTools,
+  [Toolset.APPSTACK_RELEASE_WORKFLOW]: async (request: any) => {
+    const result = await handleAppStackReleaseWorkflowTools(request);
+    if (result !== null) return result;
+    return await handleAppStackAppReleaseWorkflowTools(request);
+  },
   
   // Test Management - granular toolsets
   [Toolset.TESTCASE]: handleTestManagementTools,
@@ -76,12 +81,52 @@ const HANDLER_MAP: Record<Toolset, (request: any) => Promise<any>> = {
   [Toolset.TESTRESULT]: handleTestManagementTools,
   
   // Legacy aggregated toolsets for backward compatibility
-  [Toolset.CODE_MANAGEMENT]: handleCodeManagementTools,
+  [Toolset.CODE_MANAGEMENT]: async (request: any) => {
+    const result = await handleCodeManagementTools(request);
+    if (result !== null) return result;
+    return await handleCommitTools(request);
+  },
   [Toolset.ORGANIZATION_MANAGEMENT]: handleOrganizationTools,
-  [Toolset.PROJECT_MANAGEMENT]: handleProjectManagementTools,
-  [Toolset.PIPELINE_MANAGEMENT]: handlePipelineTools,
+  [Toolset.PROJECT_MANAGEMENT]: async (request: any) => {
+    const result = await handleProjectManagementTools(request);
+    if (result !== null) return result;
+    return await handleEffortTools(request);
+  },
+  [Toolset.PIPELINE_MANAGEMENT]: async (request: any) => {
+    const handlers = [
+      handlePipelineTools,
+      handleServiceConnectionTools,
+      handleResourceMemberTools,
+      handleVMDeployOrderTools,
+      handleTagTools,
+    ];
+    for (const handler of handlers) {
+      const result = await handler(request);
+      if (result !== null) return result;
+    }
+    return null;
+  },
   [Toolset.PACKAGES_MANAGEMENT]: handlePackageManagementTools,
-  [Toolset.APPLICATION_DELIVERY]: handleAppStackTools,
+  [Toolset.APPLICATION_DELIVERY]: async (request: any) => {
+    const handlers = [
+      handleAppStackTools,
+      handleAppStackTagTools,
+      handleAppStackTemplateTools,
+      handleAppStackGlobalVarTools,
+      handleAppStackVariableGroupTools,
+      handleAppStackOrchestrationTools,
+      handleAppStackChangeRequestTools,
+      handleAppStackDeploymentResourceTools,
+      handleAppStackChangeOrderTools,
+      handleAppStackReleaseWorkflowTools,
+      handleAppStackAppReleaseWorkflowTools,
+    ];
+    for (const handler of handlers) {
+      const result = await handler(request);
+      if (result !== null) return result;
+    }
+    return null;
+  },
   [Toolset.TEST_MANAGEMENT]: handleTestManagementTools,
 }
 
