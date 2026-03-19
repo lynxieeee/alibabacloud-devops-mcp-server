@@ -24,6 +24,70 @@ import { handleTestManagementTools } from './test-management.js';
 import { handleTagTools } from './tag.js';
 import { Toolset } from '../common/toolsets.js';
 
+/**
+ * Ensures the content.text in the result is a valid JSON object.
+ * Wraps non-object types into standard object format:
+ * - Array -> { records: array }
+ * - String -> { data: string }
+ * - Boolean -> { success: boolean }
+ * - Number -> { value: number }
+ * - null/undefined -> { data: null }
+ * 
+ * @param result - The tool handler result containing content array
+ * @returns The result with normalized JSON object responses
+ */
+function ensureObjectResponse(result: any): any {
+  // Guard: return early if result structure is invalid
+  if (!result || typeof result !== 'object') {
+    return result;
+  }
+
+  if (!result.content || !Array.isArray(result.content) || result.content.length === 0) {
+    return result;
+  }
+
+  const newContent = result.content.map((item: any) => {
+
+    if (!item || item.type !== 'text' || typeof item.text !== 'string') {
+      return item;
+    }
+
+    const text = item.text.trim();
+    if (!text) {
+      return item;
+    }
+
+    let parsed: any;
+    try {
+      parsed = JSON.parse(text);
+    } catch (e) {
+      return { type: 'text', text: JSON.stringify({ data: item.text }, null, 2) };
+    }
+
+    if (parsed !== null && typeof parsed === 'object' && !Array.isArray(parsed)) {
+      return item;
+    }
+
+    // Wrap primitive/array types into standard object format
+    let wrapped: Record<string, any>;
+    if (Array.isArray(parsed)) {
+      wrapped = { records: parsed };
+    } else if (typeof parsed === 'string') {
+      wrapped = { data: parsed };
+    } else if (typeof parsed === 'boolean') {
+      wrapped = { success: parsed };
+    } else if (typeof parsed === 'number') {
+      wrapped = { value: parsed };
+    } else {
+      wrapped = { data: parsed ?? null };
+    }
+
+    return { type: 'text', text: JSON.stringify(wrapped, null, 2) };
+  });
+
+  return { ...result, content: newContent };
+}
+
 // 定义处理函数映射
 const HANDLER_MAP: Record<Toolset, (request: any) => Promise<any>> = {
   [Toolset.BASE]: handleBaseTools,
@@ -161,7 +225,7 @@ export const handleToolRequest = async (request: any) => {
   for (const handler of handlers) {
     const result = await handler(request);
     if (result !== null) {
-      return result;
+      return ensureObjectResponse(result);
     }
   }
 
@@ -175,7 +239,8 @@ export const handleToolRequestByToolset = async (request: any, toolsetName: Tool
   if (!handler) {
     throw new Error(`Unknown toolset: ${toolsetName}`);
   }
-  return await handler(request);
+  const result = await handler(request);
+  return ensureObjectResponse(result);
 };
 
 // 新增处理启用工具集的接口

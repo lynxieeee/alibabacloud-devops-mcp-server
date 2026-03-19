@@ -20,7 +20,7 @@ export const handleProjectManagementTools = async (request: any) => {
 
     case "search_projects": {
       const args = types.SearchProjectsSchema.parse(request.params.arguments);
-      const projects = await project.searchProjectsFunc(
+      const res = await project.searchProjectsFunc(
         args.organizationId,
         args.name ?? undefined,
         args.status ?? undefined,
@@ -39,7 +39,7 @@ export const handleProjectManagementTools = async (request: any) => {
         args.userId ?? undefined,
       );
       return {
-        content: [{ type: "text", text: JSON.stringify(projects, null, 2) }],
+        content: [{ type: "text", text: JSON.stringify(res, null, 2) }]
       };
     }
 
